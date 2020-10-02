@@ -120,9 +120,9 @@ copyright(intval(date('Y')));
 new_exercise(8);
 function login(string $email, string $password)
 {
-    if ($email == 'john@example.be' || $password == 'pocahontas') {
-        return 'Welcome John';
-        return ' Smith';
+    if ($email == 'john@example.be' && $password == 'pocahontas') {
+        return 'Welcome John Smith';
+
     }
     return 'No access';
 }
@@ -142,11 +142,14 @@ function isLinkValid(string $link)
     $unacceptables = array('https:', '.doc', '.pdf', '.jpg', '.jpeg', '.gif', '.bmp', '.png');
 
     foreach ($unacceptables as $unacceptable) {
-        if (strpos($link, $unacceptable) == true) {
-            return 'Unacceptable Found<br />';
+        if (strpos($link, $unacceptable) !== false) {
+            echo 'Unacceptable Found<br />';
+            $validity = false;
         }
     }
-    return 'Acceptable<br />';
+    if ($validity = true) {
+        echo 'Acceptable<br />';
+    }
 }
 //invalid link
 isLinkValid('http://www.google.com/hack.pdf');
